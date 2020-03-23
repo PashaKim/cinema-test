@@ -1,1 +1,2 @@
-# cinema-test
+Python3.6
+Django3
