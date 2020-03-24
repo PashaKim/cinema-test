@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'main' %}">Кинотеатр</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_staff %}
+                    <li class="nav-item ">
+                        <a class="nav-link active" style="color: gold" href="{{ domain }}/admin">
+                            Администрирование
+                        </a>
+                    </li>
+                {% endif %}
+                <li class="nav-item ">
+                    <a class="nav-link
+                        {% if selected_menu == '/' %}
+                            active
+                        {% endif %} " href="/">
+                        Главная
+                    </a>
+                </li>
+                {% for menu in menus %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">{{ menu.name }}
+
+                        </a>
+                        <ul>
+                            {% for element in menu.menu_elements.all %}
+                                <li>
+                                    <a class="nav-link
+                                        {% if selected_menu == element.url %}
+                                              active
+                                        {% endif %}" href="{{ element.url }}">
+                                        {{ element.name }}
+
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+                <li class="nav-item " style="padding-left: 100px">
+                    {% if user.is_authenticated %}
+                        <a class="nav-link active" style="
+                        {% if user.is_staff %}color:gold{% endif %}">
+                            {{ user.username |upper}}
+                        </a>
+                               <ul>
+                                <li>
+                                    <a class="nav-link" href="{% url 'logout' %}">
+                                        Выйти ->
+                                    </a>
+                                </li>
+                        </ul>
+                    {% else %}
+                        <a class="nav-link" href="{% url 'login' %}">
+                            Войти
+                        </a>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

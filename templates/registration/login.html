@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Логин{% endblock %}
+
+{% block content %}
+    <!-- Jumbotron Header -->
+    <header class="jumbotron my-4">
+        {% if user.is_authenticated %}
+            <h1>{{ user.username|capfirst }},</h1>
+            <p>Вы уже вошли. Для выхода нажмите кнопку "Выйти".</p>
+            <a href="{% url 'logout' %}" class="btn btn-primary btn-lg">Выйти</a>
+        {% else %}
+            <h1 class="display-3">Логин</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-primary btn-lg" type="submit">Login</button>
+            </form>
+        {% endif %}
+    </header>
+
+
+{% endblock %}
