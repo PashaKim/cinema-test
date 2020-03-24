@@ -37,3 +37,12 @@ def news(request):
     context['selected_menu'] = '/news'
     context['news'] = News.objects.all()
     return render(request, 'content/news.html', context)
+
+
+def news_post(request, post_id=None):
+    if not post_id:
+        return redirect('films')
+    context = base_context(request)
+    context['selected_menu'] = '/films'
+    context['post'] = News.objects.get(id=post_id)
+    return render(request, 'content/selected_item/news_post.html', context)
