@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}404!{% endblock %}
+
+{% block content %}
+<!-- Jumbotron Header -->
+<header class="jumbotron my-4">
+    <h1 class="display-3">Ошибка 404!</h1>
+    <p class="lead">Страница {{ request.path }} не найдена</p>
+</header>
+
+{% endblock %}
