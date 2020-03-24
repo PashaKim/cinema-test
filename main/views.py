@@ -1,3 +1,4 @@
+from django.contrib.auth import logout
 from django.shortcuts import render, redirect
 from .models import Menu, Film, News
 
@@ -46,3 +47,8 @@ def news_post(request, post_id=None):
     context['selected_menu'] = '/films'
     context['post'] = News.objects.get(id=post_id)
     return render(request, 'content/selected_item/news_post.html', context)
+
+
+def logout_redirect(request):
+    logout(request)
+    return redirect('main')

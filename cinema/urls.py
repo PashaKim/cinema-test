@@ -1,12 +1,14 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from main import views as main_views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='admin'),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('', main_views.main, name='main'),
+    path('logout/', main_views.logout_redirect, name='logout'),
     path('films/', main_views.films, name='films'),
     path('film/<int:film_id>', main_views.film, name='film'),
     path('news_post/<int:post_id>', main_views.news_post, name='news_post'),

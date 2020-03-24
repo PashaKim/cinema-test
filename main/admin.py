@@ -17,17 +17,18 @@ class MenuAdmin(admin.ModelAdmin):
     inlines = [MenuElementInLines]
 
 
-@admin.register(MenuElement)
-class MenuElement(admin.ModelAdmin):
-    list_display = ('menu', 'name', 'url', 'created', 'updated')
-    list_filter = ('menu',)
-    readonly_fields = ('created', 'updated')
+# @admin.register(MenuElement)
+# class MenuElement(admin.ModelAdmin):
+#     list_display = ('menu', 'name', 'url', 'created', 'updated')
+#     list_filter = ('menu',)
+#     readonly_fields = ('created', 'updated')
 
 
 @admin.register(Film)
 class FilmAdmin(admin.ModelAdmin):
+    fields = ('name', 'poster', 'image_tag', 'date_release','trailer_url', 'description', 'created', 'updated')
     list_display = ('name', 'image_tag', 'date_release', 'created', 'updated')
-    readonly_fields = ('created', 'updated')
+    readonly_fields = ('created', 'updated', 'image_tag')
     list_filter = ('date_release',)
 
     def image_tag(self, obj):
@@ -38,8 +39,9 @@ class FilmAdmin(admin.ModelAdmin):
 
 @admin.register(News)
 class FilmAdmin(admin.ModelAdmin):
-    list_display = ('name','image_tag', 'created', 'updated')
-    readonly_fields = ('created', 'updated')
+    fields = ('name', 'image', 'image_tag', 'description', 'created', 'updated')
+    list_display = ('name', 'image_tag', 'created', 'updated')
+    readonly_fields = ('created', 'updated', 'image_tag')
 
     def image_tag(self, obj):
         return mark_safe(f'<img src="{obj.image.url}" width="150" height="150" />')

@@ -13,6 +13,10 @@ class Menu(models.Model):
     def elements(self):
         return list(self.menu_elements.values_list('name', 'url'))
 
+    class Meta:
+        verbose_name = 'Меню'
+        verbose_name_plural = 'Меню'
+
 
 class MenuElement(models.Model):
     menu = models.ForeignKey(Menu, on_delete=models.CASCADE, related_name='menu_elements')
@@ -24,6 +28,10 @@ class MenuElement(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'Элемент Меню'
+        verbose_name_plural = 'Элементы Меню'
 
 
 class Film(models.Model):
@@ -41,6 +49,8 @@ class Film(models.Model):
 
     class Meta:
         ordering = ('-date_release',)
+        verbose_name = 'Фильм'
+        verbose_name_plural = 'Фильмы'
 
 
 class News(models.Model):
@@ -53,3 +63,7 @@ class News(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'Новость'
+        verbose_name_plural = 'Новости'

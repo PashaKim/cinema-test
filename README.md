@@ -1,2 +1,2 @@
 Python3.6
-Django3
+Django2
