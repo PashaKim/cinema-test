@@ -38,6 +38,10 @@ class FilmAdmin(admin.ModelAdmin):
 
 @admin.register(News)
 class FilmAdmin(admin.ModelAdmin):
-    list_display = ('name', 'created', 'updated')
+    list_display = ('name','image_tag', 'created', 'updated')
     readonly_fields = ('created', 'updated')
 
+    def image_tag(self, obj):
+        return mark_safe(f'<img src="{obj.image.url}" width="150" height="150" />')
+    image_tag.short_description = 'Image'
+    image_tag.allow_tags = True

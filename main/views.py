@@ -12,6 +12,7 @@ def base_context(request):
 def main(request):
     context = base_context(request)
     context['selected_menu'] = '/'
+    context['films'] = Film.objects.all()
     return render(request, 'content/main.html', context)
 
 

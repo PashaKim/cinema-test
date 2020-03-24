@@ -9,6 +9,7 @@ urlpatterns = [
     path('', main_views.main, name='main'),
     path('films/', main_views.films, name='films'),
     path('film/<int:film_id>', main_views.film, name='film'),
+    path('news_post/<int:post_id>', main_views.film, name='news_post'),
     path('news/', main_views.news, name='news'),
 ]
 
